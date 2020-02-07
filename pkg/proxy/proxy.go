@@ -26,7 +26,7 @@ import (
 	"time"
 
 	"github.com/miekg/dns"
-	"github.com/Comcast/DNS-over-HTTPs-translator/translator"
+	"github.com/Comcast/DNS-over-HTTPs-translator"
 
 	"go.uber.org/zap"
 )

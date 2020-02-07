@@ -23,7 +23,7 @@ import (
 	"strings"
 
 	"github.com/spf13/viper"
-	"github.com/Comcast/DNS-over-HTTPs-translator/translator"
+	"github.com/Comcast/DNS-over-HTTPs-translator"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

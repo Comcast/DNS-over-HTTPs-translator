@@ -42,7 +42,3 @@ build: clean
 .PHONY: dev
 dev:
 	go run -race ${LDFLAGS} cmd/doh-translator/main.go
-
-.PHONY: update
-update:
-	@glide cc && glide update --strip-vendor && glide install --strip-vendor

@@ -19,7 +19,7 @@
 package controller
 
 import (
-	"github.com/Comcast/DNS-over-HTTPs-translator/translator"
+	"github.com/Comcast/DNS-over-HTTPs-translator"
 	"go.uber.org/zap"
 )
 

@@ -27,16 +27,18 @@ import (
 	"time"
 
 	"github.com/urfave/cli"
-	"github.com/Comcast/DNS-over-HTTPs-translator/translator"
-	"github.com/Comcast/DNS-over-HTTPs-translator/config"
-	"github.com/Comcast/DNS-over-HTTPs-translator/proxy"
-	"github.com/Comcast/DNS-over-HTTPs-translator/controller"
+	"github.com/Comcast/DNS-over-HTTPs-translator"
+	"github.com/Comcast/DNS-over-HTTPs-translator/pkg/config"
+	"github.com/Comcast/DNS-over-HTTPs-translator/pkg/proxy"
+	"github.com/Comcast/DNS-over-HTTPs-translator/pkg/controller"
 	"go.uber.org/zap"
 )
 
 var (
 	logger *zap.Logger
+	cfg    translator.Config
 	ctrl   translator.Controller
+	pxy    translator.Proxy
 )
 
 func main() {
@@ -107,7 +109,7 @@ func TranslatorStart(c *cli.Context) (err error) {
 	mainCtx, cf := context.WithCancel(context.Background())
 
 	// Run controller
-	go ctrl.Run(mainCtx)
+	go ctrl.Start(mainCtx)
 
 	// Listen for signals to stop the translator
 	signals := make(chan os.Signal, 1)

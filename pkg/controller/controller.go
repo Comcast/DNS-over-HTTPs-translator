@@ -21,7 +21,7 @@ package controller
 import (
 	"context"
 
-	"github.com/Comcast/DNS-over-HTTPs-translator/translator"
+	"github.com/Comcast/DNS-over-HTTPs-translator"
 	"go.uber.org/zap"
 )
 
@@ -49,7 +49,7 @@ func (c *ctrl) Proxy() translator.Proxy {
 	return c.proxy
 }
 
-func (c *ctrl) Run(ctx context.Context) (err error) {
+func (c *ctrl) Start(ctx context.Context) (err error) {
 	err = c.proxy.Start(ctx)
 	if err != nil {
 		c.logger.Error("Proxy execution error", zap.Error(err))
@@ -58,7 +58,7 @@ func (c *ctrl) Run(ctx context.Context) (err error) {
 	for {
 		select {
 		case <-ctx.Done():
-			c.logger.Info("Run - Context cancelled")
+			c.logger.Info("Controller Start - Context cancelled")
 			return
 		}
 	}
