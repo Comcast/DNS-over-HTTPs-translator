@@ -6,6 +6,9 @@
 
 make clean
 make build
-# add config file to /etc/doh-translator
+
+sudo mkdir /etc/doh-translator
+sudo cp ./config-doh-translator.yaml /etc/doh-translator/
+
 sudo cp ./.build/doh-translator-linux-amd64 /usr/local/bin
 sudo cp ./systemd/doh-translator.service /lib/systemd/system/
