@@ -2,6 +2,10 @@
 
 HTTP proxy server that accepts DNS queries and responds with replies from the configured DNS resolver.
 
+## License
+
+Apache License 2.0
+
 ## Working
 
 The DoH-Translator listens on port 80 and translates GET or POST requests containing messages of media type - "application/dns-message". The translator then queries the configured DNS Resolver (default is the public anycast Comcast DNS Resolver) and correlates the DNS response from the resolver with the  HTTP exchange.
