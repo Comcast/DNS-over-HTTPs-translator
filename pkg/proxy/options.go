@@ -38,3 +38,10 @@ func WithResolver(resolver string) Option {
 		p.resolver = resolver
 	}
 }
+
+// WithListen adds an instance of Config to the Proxy instance
+func WithListen(listen string) Option {
+	return func(p *proxy) {
+		p.listen = listen
+	}
+}

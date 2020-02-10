@@ -1,3 +1,6 @@
+# Address/port to listen on
+listen: ":80"
+
 # IP address and port of the resolver.
 # Note: Comcast public resolver set as default if no resolver 
 # is provided here.

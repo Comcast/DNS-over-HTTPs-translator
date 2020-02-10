@@ -57,6 +57,12 @@ func New(options ...Option) (result translator.Config, err error) {
 	return
 }
 
+// Listen returns the IP/port to listen on
+func (c *cfg) Listen() string {
+	c.viperCfg.SetDefault("listen", ":80")
+	return c.viperCfg.GetString("listen")
+}
+
 // Resolver returns the DNS resolver that is used by the translator
 func (c *cfg) Resolver() string {
 	c.viperCfg.SetDefault("resolver", "75.75.75.75:53")

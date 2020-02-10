@@ -37,6 +37,9 @@ type proxy struct {
 
 	// IP address and port of the resolver.
 	resolver string
+
+	// Address/port to listen on.
+	listen string
 }
 
 // New returns an instance of Translator.
@@ -57,7 +60,7 @@ func (p *proxy) Start(ctx context.Context) (err error) {
 	http.HandleFunc("/", p.serveProxyRequest)
 	p.logger.Info("Starting DOH translator HTTP proxy server")
 	p.logger.Info("Resolver in use:", zap.String("resolver_string", p.resolver))
-	if err := http.ListenAndServe(":80", nil); err != nil {
+	if err := http.ListenAndServe(p.listen, nil); err != nil {
 		panic(err)
 	}
 	return err

@@ -91,6 +91,7 @@ func TranslatorStart(c *cli.Context) (err error) {
 	if pxy, err = proxy.New(
 		proxy.WithLogger(logger),
 		proxy.WithResolver(cfg.Resolver()),
+		proxy.WithListen(cfg.Listen()),
 	); err != nil {
 		logger.Error("Unable to create the Proxy instance", zap.Error(err))
 		return err

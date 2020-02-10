@@ -24,6 +24,7 @@ import (
 )
 
 type Config interface {
+	Listen() string
 	Resolver() string
 	Logger() (logger *zap.Logger, err error)
 }
