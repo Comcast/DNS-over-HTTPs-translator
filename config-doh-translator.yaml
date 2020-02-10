@@ -1,0 +1,10 @@
+# IP address and port of the resolver.
+# Note: Comcast public resolver set as default if no resolver 
+# is provided here.
+resolver: "75.75.75.75:53"
+
+# logging settings for the translator
+logger:
+  level: debug
+  logfile: /tmp/doh-translator.log
+  stdout: true

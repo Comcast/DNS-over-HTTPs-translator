@@ -1,0 +1,13 @@
+[Unit]
+Description=doh-translator-app
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=/usr/local/bin/doh-translator-linux-amd64 start
+KillMode=process
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
