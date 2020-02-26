@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 
 package config
 
@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"strings"
 
+	translator "github.com/Comcast/DNS-over-HTTPs-translator"
 	"github.com/spf13/viper"
-	"github.com/Comcast/DNS-over-HTTPs-translator"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -61,6 +61,12 @@ func New(options ...Option) (result translator.Config, err error) {
 func (c *cfg) Resolver() string {
 	c.viperCfg.SetDefault("resolver", "75.75.75.75:53")
 	return c.viperCfg.GetString("resolver")
+}
+
+// Listen returns the address/port that the translator/proxy will listen on
+func (c *cfg) Listen() string {
+	c.viperCfg.SetDefault("listen", ":80")
+	return c.viperCfg.GetString("listen")
 }
 
 // Logger returns an instantiated logger for the translator

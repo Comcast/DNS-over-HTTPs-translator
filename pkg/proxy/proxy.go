@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 
 package proxy
 
@@ -25,8 +25,8 @@ import (
 	"net/http"
 	"time"
 
+	translator "github.com/Comcast/DNS-over-HTTPs-translator"
 	"github.com/miekg/dns"
-	"github.com/Comcast/DNS-over-HTTPs-translator"
 
 	"go.uber.org/zap"
 )
@@ -37,6 +37,9 @@ type proxy struct {
 
 	// IP address and port of the resolver.
 	resolver string
+
+	// Address and port that the proxy will listen on.
+	listen string
 }
 
 // New returns an instance of Translator.
@@ -57,7 +60,7 @@ func (p *proxy) Start(ctx context.Context) (err error) {
 	http.HandleFunc("/", p.serveProxyRequest)
 	p.logger.Info("Starting DOH translator HTTP proxy server")
 	p.logger.Info("Resolver in use:", zap.String("resolver_string", p.resolver))
-	if err := http.ListenAndServe(":80", nil); err != nil {
+	if err := http.ListenAndServe(p.listen, nil); err != nil {
 		panic(err)
 	}
 	return err
@@ -70,10 +73,10 @@ func (p *proxy) Stop() (err error) {
 func (p *proxy) serveProxyRequest(w http.ResponseWriter, r *http.Request) {
 
 	var (
-		buf []byte
-		err error
+		buf   []byte
+		err   error
 		reply *dns.Msg
-		rtt time.Duration
+		rtt   time.Duration
 	)
 
 	switch r.Method {
