@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 
 package proxy
 
@@ -32,9 +32,16 @@ func WithLogger(logger *zap.Logger) Option {
 	}
 }
 
-// WithResolver adds an instance of Config to the Proxy instance
+// WithResolver adds the resolver string to the Proxy instance
 func WithResolver(resolver string) Option {
 	return func(p *proxy) {
 		p.resolver = resolver
+	}
+}
+
+// WithListen adds the listening address/port to the Proxy instance
+func WithListen(listen string) Option {
+	return func(p *proxy) {
+		p.listen = listen
 	}
 }

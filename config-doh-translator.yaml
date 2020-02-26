@@ -3,6 +3,9 @@
 # is provided here.
 resolver: "75.75.75.75:53"
 
+# IP address and port that the proxy will listen on
+listen: ":80"
+
 # logging settings for the translator
 logger:
   level: debug
