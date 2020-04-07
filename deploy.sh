@@ -7,7 +7,7 @@
 make clean
 make build
 
-sudo mkdir /etc/doh-translator
+sudo mkdir -p /etc/doh-translator
 sudo cp ./config-doh-translator.yaml /etc/doh-translator/
 
 sudo cp ./.build/doh-translator-linux-amd64 /usr/local/bin

@@ -39,8 +39,8 @@ Please verify the success of the below checks before executing the translator:
 ## Execution
 ```shell
 mkdir -p /etc/translator/
-mkdir -p $GOPATH/src/github.com/Comcast/DNS-over-HTTPs-translator
-cd $GOPATH/src/github.com/Comcast/DNS-over-HTTPs-translator
+mkdir -p $GOPATH/src/github.com/Comcast
+cd $GOPATH/src/github.com/Comcast
 git clone git@github.com:Comcast/DNS-over-HTTPs-translator.git
 cd translator
 cp $GOPATH/src/github.com/Comcast/DNS-over-HTTPs-translator/config-doh-translator.yaml /etc/translator
