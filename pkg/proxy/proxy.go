@@ -113,7 +113,7 @@ func (p *proxy) serveProxyRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	p.logger.Info("DNS request received", zap.String("dns_message", msg.String()))
+	p.logger.Info("DNS request received", zap.String("dns_request", msg.String()), zap.Int("request_size", len(buf)))
 
 	client := new(dns.Client)
 	reply, rtt, err = client.Exchange(msg, p.resolver)
@@ -124,8 +124,6 @@ func (p *proxy) serveProxyRequest(w http.ResponseWriter, r *http.Request) {
 
 	rttSeconds := rtt.Seconds()
 
-	p.logger.Info("RTT for resolve in seconds", zap.Float64("rtt_sec", rttSeconds))
-
 	if err != nil {
 		p.logger.Error("Exchange failed", zap.Error(err))
 		return
@@ -135,6 +133,7 @@ func (p *proxy) serveProxyRequest(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 	}
+	p.logger.Info("RTT for resolve in seconds", zap.Float64("rtt_sec", rttSeconds), zap.String("dns_response", reply.String()), zap.Int("response_size", len(bytes)))
 
 	w.Header().Set("Server", p.resolver)
 	w.Header().Set("Content-Type", "application/dns-message")
